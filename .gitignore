@@ -1,0 +1,13 @@
+# Node / Electron
+todolist/node_modules/
+todolist/dist/
+todolist/*.log
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+
+# Cursor/IDE artifacts
+.cursor/
+

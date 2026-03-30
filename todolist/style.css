@@ -1,0 +1,580 @@
+:root {
+  --bg0: #0b1020;
+  --bg1: #0a1633;
+  --card: rgba(255, 255, 255, 0.08);
+  --card2: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+  --muted2: rgba(255, 255, 255, 0.55);
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --radius: 20px;
+  --radius2: 14px;
+  --accent: #7c5cff;
+  --accent2: #2ee4ff;
+  --danger: #ff4d6d;
+  --ok: #3ddc97;
+  --focus: 0 0 0 4px rgba(124, 92, 255, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: transparent;
+  overflow: hidden;
+}
+
+.page {
+  height: 100%;
+  display: grid;
+  place-items: stretch;
+  padding: 0;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--card), var(--card2));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 16px;
+  overflow: auto;
+}
+
+.windowBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: -6px 0 10px 0;
+  padding: 8px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.12);
+  -webkit-app-region: drag;
+}
+
+.windowDrag {
+  flex: 1 1 auto;
+  min-width: 30px;
+}
+
+.windowControls {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  -webkit-app-region: no-drag;
+}
+
+.winChip {
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.14);
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.winChip.isOn {
+  border-color: rgba(46, 228, 255, 0.35);
+  background: rgba(46, 228, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.winToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.14);
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+}
+
+.winToggle input {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent2);
+}
+
+.iconBtnSm {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+}
+
+.iconBtn.danger:hover {
+  background: rgba(255, 77, 109, 0.14);
+  border-color: rgba(255, 77, 109, 0.28);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 6px 0 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.stats {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.18);
+  user-select: none;
+}
+
+.countdown {
+  min-width: 220px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.countdownLabel {
+  font-size: 12px;
+  color: var(--muted2);
+  font-weight: 600;
+}
+
+.countdownValue {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.countdownMeta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.stat {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.statSep {
+  color: var(--muted2);
+  font-weight: 600;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr 190px auto;
+  gap: 10px;
+  margin: 12px 0 12px 0;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.input:focus {
+  border-color: rgba(124, 92, 255, 0.55);
+  box-shadow: var(--focus);
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.btnPrimary {
+  padding: 12px 14px;
+  border-radius: var(--radius2);
+  border: 0;
+  color: #0b1020;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 12px 26px rgba(124, 92, 255, 0.22);
+  transition: transform 0.08s ease, filter 0.15s ease;
+}
+
+.btnPrimary:hover {
+  filter: brightness(1.05);
+}
+
+.btnPrimary:active {
+  transform: translateY(1px);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 2px 0;
+}
+
+.toolbarRight {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.filters {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.chip.isActive {
+  color: var(--text);
+  border-color: rgba(124, 92, 255, 0.55);
+  background: rgba(124, 92, 255, 0.16);
+}
+
+.btnGhost {
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btnGhost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.btnGhost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.list {
+  list-style: none;
+  margin: 12px 0 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.14);
+  border-radius: 18px;
+  padding: 12px;
+}
+
+.calHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.calTitle {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.iconBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.iconBtn:active {
+  transform: translateY(1px);
+}
+
+.calWeek {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.calWeek span {
+  text-align: center;
+}
+
+.calGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.day {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.10);
+  color: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+}
+
+.day:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.day:active {
+  transform: translateY(1px);
+}
+
+.day.isOutside {
+  opacity: 0.35;
+}
+
+.day.isToday {
+  border-color: rgba(46, 228, 255, 0.35);
+}
+
+.day.isSelected {
+  border-color: rgba(124, 92, 255, 0.65);
+  background: rgba(124, 92, 255, 0.16);
+}
+
+.badge {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(61, 220, 151, 0.22);
+  border: 1px solid rgba(61, 220, 151, 0.30);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calHint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.60);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.content {
+  min-width: 0;
+}
+
+.text {
+  font-size: 15px;
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+.item.isDone .text {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.trash {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.trash:hover {
+  background: rgba(255, 77, 109, 0.14);
+  border-color: rgba(255, 77, 109, 0.28);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.trash:active {
+  transform: translateY(1px);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .composer {
+    grid-template-columns: 1fr;
+  }
+
+  .btnPrimary {
+    width: 100%;
+  }
+
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .btnGhost {
+    width: 100%;
+  }
+
+  .headerRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .countdown {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}

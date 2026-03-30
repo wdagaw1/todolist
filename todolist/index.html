@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card" aria-label="To-Do List">
+        <div class="windowBar" aria-label="窗口工具栏">
+          <div class="windowDrag" aria-hidden="true"></div>
+          <div class="windowControls">
+            <button class="winChip" type="button" id="pinBtn" aria-pressed="true" title="置顶开关">
+              置顶
+            </button>
+            <label class="winToggle" title="开机自启（仅桌面版）">
+              <input id="autoStart" type="checkbox" />
+              <span>开机自启</span>
+            </label>
+            <button class="iconBtn iconBtnSm" type="button" id="minBtn" title="最小化">
+              —
+            </button>
+            <button class="iconBtn iconBtnSm danger" type="button" id="closeBtn" title="关闭">
+              ×
+            </button>
+          </div>
+        </div>
+
+        <header class="header">
+          <div>
+            <h1 class="title">To-Do</h1>
+            <p class="subtitle">把今天要做的事，清清爽爽地安排好。</p>
+          </div>
+          <div class="headerRight">
+            <div class="countdown" aria-live="polite">
+              <div class="countdownLabel">最近截止</div>
+              <div class="countdownValue" id="countdownValue">—</div>
+              <div class="countdownMeta" id="countdownMeta">暂无设置截止时间的任务</div>
+            </div>
+            <div class="stats" aria-label="任务统计">
+              <span class="stat" id="statTotal">0</span>
+              <span class="statSep">/</span>
+              <span class="stat" id="statDone">0</span>
+            </div>
+          </div>
+        </header>
+
+        <form class="composer" id="todoForm" autocomplete="off">
+          <label class="srOnly" for="todoInput">添加任务</label>
+          <input
+            id="todoInput"
+            class="input"
+            type="text"
+            placeholder="输入任务内容，回车添加…"
+            maxlength="120"
+            required
+          />
+          <label class="srOnly" for="todoDue">截止时间</label>
+          <input id="todoDue" class="input" type="datetime-local" />
+          <button class="btnPrimary" type="submit">添加</button>
+        </form>
+
+        <div class="toolbar" role="toolbar" aria-label="过滤与操作">
+          <div class="filters" role="tablist" aria-label="筛选">
+            <button class="chip isActive" type="button" data-filter="all" role="tab">
+              全部
+            </button>
+            <button class="chip" type="button" data-filter="active" role="tab">未完成</button>
+            <button class="chip" type="button" data-filter="done" role="tab">已完成</button>
+          </div>
+          <div class="toolbarRight">
+            <button class="btnGhost" type="button" id="todayBtn">今天</button>
+            <button class="btnGhost" type="button" id="clearDone">清除已完成</button>
+          </div>
+        </div>
+
+        <div class="contentGrid">
+          <aside class="panel" aria-label="日历">
+            <div class="calHeader">
+              <button class="iconBtn" type="button" id="calPrev" aria-label="上个月">‹</button>
+              <div class="calTitle" id="calTitle">—</div>
+              <button class="iconBtn" type="button" id="calNext" aria-label="下个月">›</button>
+            </div>
+            <div class="calWeek" aria-hidden="true">
+              <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span
+              ><span>日</span>
+            </div>
+            <div class="calGrid" id="calGrid" role="grid" aria-label="月份日历"></div>
+            <div class="calHint" id="calHint">未选择日期（显示全部任务）</div>
+          </aside>
+
+          <section class="panel" aria-label="任务列表">
+            <ul class="list" id="todoList"></ul>
+          </section>
+        </div>
+
+        <footer class="footer">
+          <span class="hint">提示：可设置截止时间；点日历日期查看当天任务；顶部显示倒计时。</span>
+          <span class="hint">数据将保存在本地浏览器。</span>
+        </footer>
+      </section>
+    </main>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
